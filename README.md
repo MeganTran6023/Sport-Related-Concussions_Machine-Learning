@@ -132,7 +132,7 @@ The preprocessing pipeline applies iterative, threshold-based missingness filter
 
 7. **No imputation** — Missing values are retained as-is; no mean/mode/kNN/MICE imputation is applied.
 
-> ⚠️ **EPV reporting (Reviewer Comment 30):** The event-per-variable (EPV) ratio is computed after feature selection and reported in both notebooks. EPV = minority class N ÷ number of features. Visit 1 EPV ≈ 1.24; Visit 2 EPV ≈ 0.64. Both fall below the recommended threshold of 10, which is explicitly noted as a limitation in the manuscript.
+> ⚠️ **EPV reporting :** The event-per-variable (EPV) ratio is computed after feature selection and reported in both notebooks. EPV = minority class N ÷ number of features. Visit 1 EPV ≈ 1.24; Visit 2 EPV ≈ 0.64. Both fall below the recommended threshold of 10, which is explicitly noted as a limitation in the manuscript.
 
 ---
 
