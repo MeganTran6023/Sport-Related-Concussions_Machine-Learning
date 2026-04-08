@@ -45,8 +45,8 @@ This repository contains the complete preprocessing and machine learning (ML) co
 ├── requirements.txt
 ├── preprocessing/
 │   └── data_preprocessing.ipynb          # Full cleaning pipeline (all visits)
-├── machineLearning_visit1_REVISED.ipynb  # ML pipeline — Visit 1 features (n=48)
-├── machineLearning_visit2_REVISED.ipynb  # ML pipeline — Visit 2 features (n=95)
+├── machineLearning_visit1_REVISED-orginalset.ipynb  # ML pipeline — Visit 1 features (n=48)
+├── machineLearning_visit2_REVISED-originalExperimentSet.ipynb  # ML pipeline — Visit 2 features (n=95)
 └── figures/                              # Output figures (confusion matrices, FI plots)
 ```
 
@@ -101,8 +101,8 @@ The original dataset contained **3,038 unique patient records** diagnosed with c
 The pipeline is implemented across three notebooks in the following order:
 
 ```
-data_preprocessing.ipynb  →  machineLearning_visit1_REVISED.ipynb
-                          →  machineLearning_visit2_REVISED.ipynb
+data_preprocessing.ipynb  →  machineLearning_visit1_REVISED-orginalset.ipynb
+                          →  machineLearning_visit2_REVISED-originalExperimentSet.ipynb
 ```
 
 ### Stage 1 · Data Preprocessing
@@ -362,23 +362,23 @@ The table below maps every key methodological decision in the manuscript to its 
 
 | Manuscript Section | Notebook | Cell Description |
 |---|---|---|
-| *Cohort* — N=217 SRC patients | `visit1_REVISED`, Cell 2–4 | Load CSV, define X and y |
+| *Cohort* — N=217 SRC patients | `visit1_REVISED-orginalset-orginalset` | Load CSV, define X and y |
 | *Data Preprocessing* — iterative null filtering | `preprocessing` notebook | Missingness loop |
-| *Data Preprocessing* — EPV ratio | Both ML notebooks, Cell 6 | EPV computation & warning |
-| *Feature Engineering* — Visit 1 | `visit1_REVISED`, Cell 4 | Drop non-predictors, add `prev_head_injury`, `hx_mood_disorder` |
-| *Feature Engineering* — Visit 2 Δ features | `visit2_REVISED`, Cell 4 | Drop non-predictors, include `_diff` columns and `treatment_present` |
-| *Hyperparameter Tuning* — LightGBM | `visit1_REVISED`, Cell 11 | `ParameterSampler`, 80/20 split |
-| *Hyperparameter Tuning* — Decision Tree | `visit1_REVISED`, Cell 15 | `ParameterSampler`, 80/20 split |
-| *Hyperparameter Tuning* — Random Forest | `visit1_REVISED`, Cell 19 | `ParameterSampler`, 80/20 split |
-| *Hyperparameter Tuning* — XGBoost | `visit1_REVISED`, Cell 23 | `ParameterSampler`, 80/20 split |
-| *Hyperparameter Tuning* — SVC | `visit1_REVISED`, Cell 27 | Linear kernel, 27 combinations |
-| *Hyperparameter Tuning* — Ridge | `visit1_REVISED`, Cell 31 | k-fold CV over alpha candidates |
-| *LOOCV* — LightGBM | `visit1_REVISED`, Cell 12 | LOOCV loop, gain-based FI |
-| *LOOCV* — Decision Tree | `visit1_REVISED`, Cell 16 | LOOCV loop, Gini FI |
-| *LOOCV* — Random Forest | `visit1_REVISED`, Cell 20 | LOOCV loop, Gini FI |
-| *LOOCV* — XGBoost | `visit1_REVISED`, Cell 24 | LOOCV loop, gain-based FI |
-| *LOOCV* — SVC | `visit1_REVISED`, Cell 28 | LOOCV loop, linear coefficients |
-| *LOOCV* — Ridge | `visit1_REVISED`, Cell 32 | LOOCV loop, permutation importance |
+| *Data Preprocessing* — EPV ratio | Both ML notebooks | EPV computation & warning |
+| *Feature Engineering* — Visit 1 | `visit1_REVISED-orginalset` | Drop non-predictors, add `prev_head_injury`, `hx_mood_disorder` |
+| *Feature Engineering* — Visit 2 Δ features | `visit2_REVISED-originalExperimentSet`| Drop non-predictors, include `_diff` columns and `treatment_present` |
+| *Hyperparameter Tuning* — LightGBM | `visit1_REVISED-orginalset` | `ParameterSampler`, 80/20 split |
+| *Hyperparameter Tuning* — Decision Tree | `visit1_REVISED-orginalset`| `ParameterSampler`, 80/20 split |
+| *Hyperparameter Tuning* — Random Forest | `visit1_REVISED-orginalset` | `ParameterSampler`, 80/20 split |
+| *Hyperparameter Tuning* — XGBoost | `visit1_REVISED-orginalset`, Cell 23 | `ParameterSampler`, 80/20 split |
+| *Hyperparameter Tuning* — SVC | `visit1_REVISED-orginalset`, Cell 27 | Linear kernel, 27 combinations |
+| *Hyperparameter Tuning* — Ridge | `visit1_REVISED-orginalset`, Cell 31 | k-fold CV over alpha candidates |
+| *LOOCV* — LightGBM | `visit1_REVISED-orginalset`, Cell 12 | LOOCV loop, gain-based FI |
+| *LOOCV* — Decision Tree | `visit1_REVISED-orginalset`, Cell 16 | LOOCV loop, Gini FI |
+| *LOOCV* — Random Forest | `visit1_REVISED-orginalset`, Cell 20 | LOOCV loop, Gini FI |
+| *LOOCV* — XGBoost | `visit1_REVISED-orginalset`, Cell 24 | LOOCV loop, gain-based FI |
+| *LOOCV* — SVC | `visit1_REVISED-orginalset`, Cell 28 | LOOCV loop, linear coefficients |
+| *LOOCV* — Ridge | `visit1_REVISED-orginalset`, Cell 32 | LOOCV loop, permutation importance |
 | *Results* — metrics + 95% CI | Both ML notebooks, plotting cells | `compute_metrics()` with bootstrap |
 | *Results* — confusion matrices | Both ML notebooks, plotting cells | `plot_confusion()` |
 | *Results* — top-20 FI tables | Both ML notebooks, plotting cells | `plot_feature_importance()` |
@@ -394,10 +394,10 @@ The table below maps every key methodological decision in the manuscript to its 
 jupyter nbconvert --to notebook --execute preprocessing/data_preprocessing.ipynb
 
 # 2. Run Visit 1 ML pipeline
-jupyter nbconvert --to notebook --execute machineLearning_visit1_REVISED.ipynb
+jupyter nbconvert --to notebook --execute machineLearning_visit1_REVISED-orginalset.ipynb
 
 # 3. Run Visit 2 ML pipeline
-jupyter nbconvert --to notebook --execute machineLearning_visit2_REVISED.ipynb
+jupyter nbconvert --to notebook --execute machineLearning_visit2_REVISED-originalExperimentSet.ipynb
 ```
 
 All random operations use `random_state=42`. LOOCV results are fully deterministic given the same input data and best hyperparameters.
